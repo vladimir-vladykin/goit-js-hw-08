@@ -66,6 +66,20 @@ const images = [
 
 const gallery = document.querySelector(".gallery");
 gallery.innerHTML = createGalleryContent();
+gallery.addEventListener("click", (event) => {
+  if (event.target === event.currentTarget) {
+    // this is click on gallery itself
+    return;
+  }
+
+  // disable default handling of click on link
+  event.preventDefault();
+
+  const clickedImage = event.target.closest(".gallery-image");
+  const dataSource = clickedImage.dataset.source;
+
+  console.log(`click on ${dataSource}`);
+});
 
 function createGalleryContent() {
   const rawMarkupArray = [];
