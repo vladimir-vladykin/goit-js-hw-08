@@ -78,7 +78,8 @@ gallery.addEventListener("click", (event) => {
   const clickedImage = event.target.closest(".gallery-image");
   const dataSource = clickedImage.dataset.source;
 
-  console.log(`click on ${dataSource}`);
+  console.log(`click on ${dataSource}`); // FIXME
+  launchImageModal(dataSource);
 });
 
 function createGalleryContent() {
@@ -102,4 +103,12 @@ function createGalleryContent() {
   }
 
   return rawMarkupArray.join("");
+}
+
+function launchImageModal(imageUrl) {
+  const instance = basicLightbox.create(
+    `<img src=${imageUrl} width="1112" height="640">`
+  );
+
+  instance.show();
 }
